@@ -12,5 +12,5 @@ struct Graph{
 };
 
 void swap(Graph& g, Node& n1, Node& n2);
-void dfs(Graph& g, Node& r, std::set<std::string> states, std::string targetState, int& searchCost);
+void dfs(Graph& g, Node& r, std::set<std::string>& states, std::string targetState, std::set<int>& pieces, int& searchCost);
 void bfs(Graph& g, Node& r, std::set<std::string> states, int& searchCost);
