@@ -1,9 +1,5 @@
-#include <algorithm>
-#include <functional>
 #include <stdlib.h>
 #include <iostream>
-#include <map>
-#include <set>
 #include <utility>
 #include <vector>
 
@@ -27,4 +23,6 @@ struct Node{
 
     // Considering 2, 3 or 4 movements
     std::vector<Node> expandNode(int columns, int rows);
+    // Find two pieces by index and change their position
+    std::string changeState(int originPiece, int destinyPiece);
 };
