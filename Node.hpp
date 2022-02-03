@@ -1,19 +1,30 @@
 #include <algorithm>
+#include <functional>
 #include <stdlib.h>
 #include <iostream>
 #include <map>
+#include <set>
 #include <utility>
 #include <vector>
 
 
+// Each Node is represented by a state (Combination of pieces in specific positions)
 struct Node{
-    int piece;
-    // Each adjacent piece is represented as a pair of the address the node and the piece value
-    // for comparison agility
-    // Considerar a peça em branco como a peça de valor mais alto+1
-    // No quebra-cabeça da atividade, por exemplo, seria a peça 9
-    std::map<int, Node> adjacents;
-    Node(){};
-};
+    // State of the puzzle
+    std::string state;
+    // Cost of the search
+    int cost;
+    // Composed by a sequence of states
+    std::vector<std::string> path;
+    
+    Node(std::string state, int cost, std::vector<std::string> path){
+        this->state = state;
+        this->cost = cost;
+        this->path = path;
+        // Update the path with the current node
+        this->path.push_back(this->state);
+    };
 
-void addAdjacent(Node& n, int p, Node& n1);
+    // Considering 2, 3 or 4 movements
+    std::vector<Node> expandNode(int columns);
+};
