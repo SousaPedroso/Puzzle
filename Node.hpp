@@ -26,5 +26,5 @@ struct Node{
     };
 
     // Considering 2, 3 or 4 movements
-    std::vector<Node> expandNode(int columns);
+    std::vector<Node> expandNode(int columns, int rows);
 };
