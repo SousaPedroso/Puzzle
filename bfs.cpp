@@ -13,13 +13,13 @@ Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
         for (Node expandedNode: nextNode.expandNode(columns, rows)){
             expandedNode.cost ++;
             searchCost ++;
+            if (expandedNode.state == targetState){
+                return expandedNode;
+            }
             if (usedStates.find(expandedNode.state) == usedStates.end()){
                 // std::cout<< "State: "<< expandedNode.state<<std::endl;
                 nodeQueue.push(expandedNode);
                 usedStates.insert(expandedNode.state);
-            }
-            if (expandedNode.state == targetState){
-                return expandedNode;
             }
         }
     }
