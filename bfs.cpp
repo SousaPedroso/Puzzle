@@ -2,7 +2,7 @@
 #include <queue>
 #include <set>
 
-Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState){
+Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState){
     std::queue<Node> nodeQueue;
 
     nodeQueue.push(root);
