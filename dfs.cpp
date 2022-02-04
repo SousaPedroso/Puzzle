@@ -11,11 +11,11 @@ Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
         usedStates.insert(nextNode.state);
         nodeStack.pop();
         for (Node expandedNode: nextNode.expandNode(columns, rows)){
-            (*searchCost)++;
             if (expandedNode.state == targetState){
                 return expandedNode;
             }
             if (usedStates.find(expandedNode.state) == usedStates.end()){
+                (*searchCost)++;
                 nodeStack.push(expandedNode);
                 usedStates.insert(expandedNode.state);
             }
