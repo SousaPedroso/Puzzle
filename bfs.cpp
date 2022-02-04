@@ -1,6 +1,4 @@
-#include "Node.hpp"
-#include <queue>
-#include <set>
+#include "bfs.hpp"
 
 Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState){
     std::queue<Node> nodeQueue;

@@ -1,5 +1,4 @@
-#include "Node.hpp"
-#include <set>
+#include "dfs.hpp"
 
 Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState, int* searchCost){
     if (usedStates.find(root.state) != usedStates.end()){
