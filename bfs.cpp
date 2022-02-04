@@ -11,12 +11,12 @@ Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
         // std::cout<< "Root: "<< nextNode.state<< std::endl;
         nodeQueue.pop();
         for (Node expandedNode: nextNode.expandNode(columns, rows)){
-            (*searchCost) ++;
             if (expandedNode.state == targetState){
                 return expandedNode;
             }
             if (usedStates.find(expandedNode.state) == usedStates.end()){
                 // std::cout<< "State: "<< expandedNode.state<<std::endl;
+                (*searchCost) ++;
                 nodeQueue.push(expandedNode);
                 usedStates.insert(expandedNode.state);
             }
