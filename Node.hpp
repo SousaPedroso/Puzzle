@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 
+#define _NODE
 
 // Each Node is represented by a state (Combination of pieces in specific positions)
 struct Node{
@@ -13,13 +14,7 @@ struct Node{
     // Composed by a sequence of states
     std::vector<std::string> path;
     
-    Node(std::string state, int cost, std::vector<std::string> path){
-        this->state = state;
-        this->cost = cost;
-        this->path = path;
-        // Update the path with the current node
-        this->path.push_back(this->state);
-    };
+    Node(std::string state, int cost, std::vector<std::string> path);
 
     // Find two pieces by index and change their position
     std::string changeState(int originPiece, int destinyPiece);

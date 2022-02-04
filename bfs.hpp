@@ -1,4 +1,6 @@
+#ifndef _NODE
 #include "Node.hpp"
+#endif
 #include <queue>
 #include <set>
 

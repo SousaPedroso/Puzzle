@@ -1,5 +1,13 @@
 #include "Node.hpp"
 
+Node::Node(std::string state, int cost, std::vector<std::string> path){
+    this->state = state;
+    this->cost = cost;
+    this->path = path;
+    // Update the path with the current node
+    this->path.push_back(this->state);
+};
+
 std::string Node::changeState(int originPiece, int destinyPiece){
     std::string newState;
     // Find first piece
