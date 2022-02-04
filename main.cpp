@@ -77,15 +77,39 @@ int main(){
     // std::cout << "\nSearch cost dfs: "<< searchCostDFS << endLine;
     // std::cout << "Solution cost dfs: "<< endLine;
 
-    std::cout << "Puzzle's solution through BFS"<< endLine;
-    Node solution = dfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
+    std::cout << "Puzzle's solution through BFS..."<< endLine;
+    Node solution = bfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
     if (solution.path.size() == 0){
         std::cout << "It was not possible find a solution"<< endLine;
         std::cout << "The search went through "<<solution.cost<< "steps"<< endLine;
     }
     else{
-        std::cout << "\nSearch cost bfs: "<< solution.cost << endLine;
-        std::cout << "Solution cost bfs: "<< endLine;
+        std::cout << "\nSearch cost bfs: "<< searchCostBFS << endLine;
+        // Ignore initial state (-1)
+        std::cout << "Solution cost bfs: "<< solution.path.size()-1<< endLine;
+    }
+    answer = "R";
+    std::cout<<"Would you like to see the solution? (Y/N)"<< endLine;
+    std::cin>> answer;
+    while (answer != "Y" && answer != "N"){
+        std::cout<< "Invalid answer!"<< endLine;
+        // TO-DO: Clear console
+        std::cout<<"Would you like to see the solution? (Y/N)"<< endLine;
+        std::cin>> answer;
+    }
+
+    if (answer == "Y"){
+        int moves = 0;
+        for (std::string state: solution.path){
+            if (moves != 0){
+                std::cout<< "Move "<< moves<< ": ";
+                std::cout<< state<< endLine;
+            }
+            else{
+                std::cout<< "Initial state: "<< inititalState.state<< endLine;
+            }
+            moves ++;
+        }
     }
 
     // std::cout << "Puzzle's solution through BFS"<< endLine;
