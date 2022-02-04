@@ -47,8 +47,6 @@ int main(){
             state.push_back(' ');
         }
     }
-    // Remove last blank space
-    state.pop_back();
     // Construct the node
     Node inititalState = Node(state, searchCostBFS, paths);
 
@@ -63,8 +61,6 @@ int main(){
             targetState.push_back(' ');
         }
     }
-    // Remove last blank space
-    targetState.pop_back();
     std::cout<< "Initial state: "<< inititalState.state<< endLine;
 
     // Root will be the first piece whose value is different from rows*columns
@@ -82,13 +78,13 @@ int main(){
     // std::cout << "Solution cost dfs: "<< endLine;
 
     std::cout << "Puzzle's solution through BFS"<< endLine;
-    Node solution = bfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
+    Node solution = dfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
     if (solution.path.size() == 0){
         std::cout << "It was not possible find a solution"<< endLine;
         std::cout << "The search went through "<<solution.cost<< "steps"<< endLine;
     }
     else{
-        std::cout << "\nSearch cost bfs: "<< searchCostBFS << endLine;
+        std::cout << "\nSearch cost bfs: "<< solution.cost << endLine;
         std::cout << "Solution cost bfs: "<< endLine;
     }
 
