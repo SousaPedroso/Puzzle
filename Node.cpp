@@ -69,7 +69,7 @@ std::vector<Node> Node::expandNode(int columns, int rows){
                 expandedNodes.push_back(node);
 
                 newState = changeState(indexBlankPiece, indexBlankPiece-1);
-                Node node = Node(newState, this->cost, this->path);
+                node = Node(newState, this->cost, this->path);
                 expandedNodes.push_back(node);
 
             }
@@ -95,7 +95,7 @@ std::vector<Node> Node::expandNode(int columns, int rows){
         expandedNodes.push_back(node);
 
         newState = changeState(indexBlankPiece, indexBlankPiece-columns);
-        Node node = Node(newState, this->cost, this->path);
+        node = Node(newState, this->cost, this->path);
         expandedNodes.push_back(node);
 
         // Three moves are on laterals
@@ -117,7 +117,7 @@ std::vector<Node> Node::expandNode(int columns, int rows){
             else{
                 // Right and left
                 newState = changeState(indexBlankPiece, indexBlankPiece+1);
-                Node node = Node(newState, this->cost, this->path);
+                node = Node(newState, this->cost, this->path);
                 expandedNodes.push_back(node);
 
                 newState = changeState(indexBlankPiece, indexBlankPiece-1);
