@@ -11,8 +11,7 @@ Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
         // std::cout<< "Root: "<< nextNode.state<< std::endl;
         nodeQueue.pop();
         for (Node expandedNode: nextNode.expandNode(columns, rows)){
-            expandedNode.cost ++;
-            searchCost ++;
+            (*searchCost) ++;
             if (expandedNode.state == targetState){
                 return expandedNode;
             }
