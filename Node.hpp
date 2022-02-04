@@ -21,8 +21,8 @@ struct Node{
         this->path.push_back(this->state);
     };
 
-    // Considering 2, 3 or 4 movements
-    std::vector<Node> expandNode(int columns, int rows);
     // Find two pieces by index and change their position
     std::string changeState(int originPiece, int destinyPiece);
+    // Considering 2, 3 or 4 movements
+    std::vector<Node> expandNode(int columns, int rows);
 };
