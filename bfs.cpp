@@ -24,7 +24,8 @@ Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
     }
     // Return a node with the searchCost, but initial state and emptyPath
     std::vector<std::string> emptyPath;
-    Node notFound = Node(root.state, *searchCost, emptyPath);
+    std::vector<int> indices(rows*columns, 0);
+    Node notFound = Node(root.state, *searchCost, emptyPath, indices);
 
     return notFound;
 }

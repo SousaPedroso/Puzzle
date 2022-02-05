@@ -3,6 +3,7 @@
 Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState, int* searchCost){
     std::stack<Node> nodeStack;
     nodeStack.push(root);
+    int depth = 0;
 
     while (!nodeStack.empty()){
         // Get last Node
@@ -19,12 +20,21 @@ Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
                 nodeStack.push(expandedNode);
                 usedStates.insert(expandedNode.state);
             }
+            // All possible states were seen ()
+            if (usedStates.size() > 181440){
+                // Return a node with the searchCost, but initial state and emptyPath
+                std::vector<std::string> emptyPath;
+                std::vector<int> indices(rows*columns, 0);
+                Node notFound = Node(root.state, *searchCost, emptyPath, indices);
+                return notFound;
+            }
         }
     }
 
     // Return a node with the searchCost, but initial state and emptyPath
     std::vector<std::string> emptyPath;
-    Node notFound = Node(root.state, *searchCost, emptyPath);
+    std::vector<int> indices(rows*columns, 0);
+    Node notFound = Node(root.state, *searchCost, emptyPath, indices);
 
     return notFound;
 }
