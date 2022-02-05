@@ -29,10 +29,8 @@
     Além disso, deseja-se saber qual foi a solução encontrada (passos) e o custo da busca em número de passos, sendo que não podem haver repetições de estados do quebra-cabeças.
 </p>
 <p>
-    A diferença entre essas duas últimas é que o custo da solução é quantos passos mínimos são necessários para que <i>seja possível</i> alcançar a solução. Se ainda se tornar confuso, a imagem abaixo pode esclarecer a diferença entre as duas.
+    A diferença entre essas duas últimas é que o custo da solução é quantos passos mínimos são necessários para que <i>seja possível</i> alcançar a solução, enquanto o custo da busca representa o número total de passos até encontrar a solução.
 </p>
-
-COLOCAR IMAGEM DA DIFERENÇA ENTRE CUSTO DA BUSCA E CUSTO DA SOLUÇÃO
 
 ## [](https://github.com/SousaPedroso/Puzzle#--proposta)💡 Proposta
 
