@@ -16,8 +16,10 @@ struct Node{
     int cost;
     // Composed by a sequence of states
     std::vector<std::string> path;
-    
-    Node(std::string state, int cost, std::vector<std::string> path);
+    // Stores the indices for O(1) change of states
+    std::vector<int> indices; 
+
+    Node(std::string state, int cost, std::vector<std::string> path, std::vector<int> indices);
     ~Node();
     // Find two pieces by index and change their position
     std::string changeState(int originPiece, int destinyPiece);
