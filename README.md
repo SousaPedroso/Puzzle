@@ -28,7 +28,10 @@
     O trabalho proposto na disciplina de Inteligência Artifical pela professora Dra. <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do;jsessionid=857482D7CE6ADB6A9CAC7690EF92F7D3.buscatextual_4">Cláudia Aparecida Martins</a> consiste em resolver um quebra-cabeças de 8 peças, com um espaço em branco para deslocar as peças, movendo cada peça possível a partir de um estado inicial até o estado desejado (final). Um exemplo disso está na imagem abaixo, com respectivamente o estado inicial e o final.
 </p>
 
-![](https://github.com/SousaPedroso/Puzzle/blob/master/images/puzzleStates.PNG)
+<p align="center">
+    <img alt="Puzzle console" src="https://github.com/SousaPedroso/Puzzle/blob/master/images/puzzleStates.PNG">
+</p>
+
 <p>
     Além disso, deseja-se saber qual foi a solução encontrada (passos) e o custo da busca em número de passos, sendo que não podem haver repetições de estados do quebra-cabeças.
 </p>
