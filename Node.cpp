@@ -8,6 +8,8 @@ Node::Node(std::string state, int cost, std::vector<std::string> path){
     this->path.push_back(this->state);
 };
 
+Node::~Node() = default;
+
 std::string Node::changeState(int originPiece, int destinyPiece){
     std::string newState;
     // Find first piece
@@ -136,4 +138,33 @@ std::vector<Node> Node::expandNode(int columns, int rows){
     }
     // TO-DO: Optimize verifications
     return expandedNodes;
+}
+
+void Node::printState(int columns, int rows){
+    int position = 0;
+    for (int i=0; i<rows; i++){
+        // First row
+        if (i == 0){
+            std::cout<< "\t-------------"<< endLine;
+        }
+        for (int j=0; j<columns; j++){
+            // First column
+            if (j == 0){
+                std::cout<< "\t| "<<this->state[position]<< " ";
+            }
+            else{
+                if (j < columns-1){
+                    std::cout<< "| "<<this->state[position]<< " |";
+                }
+                // Last row
+                else{
+                    std::cout<< " "<< state[position]<< " |";
+                }
+            }
+            position += 2;
+        }
+        std::cout<< endLine;
+    }
+    // Close the puzzle
+    std::cout<< "\t-------------"<< endLine;
 }
