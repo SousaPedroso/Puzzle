@@ -32,7 +32,9 @@
     }
 #endif
 
+#ifndef endline
 #define endLine '\n';
+#endif
 
 int main(){
 
@@ -50,7 +52,7 @@ int main(){
     }
     if (answer == "Y"){
         clear();
-        std::cout<< "\tExample"<< endLine;
+        std::cout<< "\t   Example"<< endLine;
         std::cout<< endLine;
         std::cout<< "\t-------------"<< endLine;
         std::cout<< "\t| 7 | 2 | 4 |"<< endLine;
@@ -68,7 +70,6 @@ int main(){
     clear();
     std::cout<< "Type puzzle's number of rows and columns (i j): ";
     // TO-DO: Check input
-
     std::cin>> rows>> columns;
     // Initial state of the puzzle
     std::string state = "";
@@ -181,18 +182,32 @@ int main(){
     }
 
     if (answer == "Y"){
-        clear();
         int moves = 0;
+        Node move=inititalState;
         for (std::string state: solution.path){
+            clear();
             if (moves != 0){
-                std::cout<< "Move "<< moves<< ": ";
-                std::cout<< state<< endLine;
+                std::cout<< "\t   Move "<< moves<< endLine;
+                std::cout<< endLine;
+                move.state = state;
+                move.printState(columns, rows);
+                std::cout<< endLine;
+                std::cout<< endLine;
             }
             else{
-                std::cout<< "Initial state: "<< inititalState.state<< endLine;
+                std::cout<< "   Initial state "<< endLine;
+                std::cout<< endLine;
+                inititalState.printState(columns, rows);
+                std::cout<< endLine;
+                std::cout<< endLine;
             }
+            std::cout<< "Type anything to continue: ";
+            std::cin>> answer;
             moves ++;
         }
     }
+    clear();
+    std::cout<< "\t\tPUZZLE'S END"<< endLine;
+
     return 0;
 }
