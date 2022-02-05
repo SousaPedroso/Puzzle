@@ -80,7 +80,6 @@ int main(){
     // Stores the paths
     std::vector<std::string> paths;
 
-
     clear();
     std::cout << "\nWhat is the initial puzzle?"<< endLine;
     std::cout<< "Pieces: ";
@@ -98,13 +97,18 @@ int main(){
     std::vector<int> indices(rows*columns, 0);
     // O(rows*columns), fast future change of states
     int position = 0;
-    for (int i=0; i<=rows*columns*2; i=i+2){
-        indices[(i-'0')-1] = position;
+    // Ignore ' ' characters
+    for (int i=0; i<rows*columns*2; i=i+2){
+        if (state[i] != 'X'){
+            indices[(state[i]-'0')-1] = position;
+        }
+        else{
+            indices[rows*columns-1] = position;
+        }
         position ++;
     }
-
     // Construct the node
-    Node inititalState = Node(state, searchCostBFS, paths);
+    Node inititalState = Node(state, searchCostBFS, paths, indices);
 
     std::cout << "\nWhat is the target puzzle to be find?"<< endLine;
     std::cout<< "Pieces: ";
@@ -149,20 +153,27 @@ int main(){
         position++;
     }
 
+    bool found=true;
     // First declaration just for global scope
     Node solution = inititalState;
     if (searchAlgorithm == 1){
         std::cout << "Puzzle's solution through DFS"<< endLine;
         solution = dfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostDFS);
-        std::cout << "\nSearch cost dfs: "<< searchCostDFS << endLine;
-        std::cout << "Solution cost dfs: "<< endLine;
+        if (solution.path.size() == 0){
+            std::cout << "It was not possible find a solution"<< endLine;
+            found = false;
+        }
+        else{
+            std::cout << "\nSearch cost dfs: "<< searchCostDFS<< endLine;
+            std::cout << "Solution cost dfs: "<< solution.path.size()-1<< endLine;
+        }
     }
     else{
         std::cout << "Puzzle's solution through BFS..."<< endLine;
         solution = bfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
-        if (solution.path.size() == 0){
+        if (solution.path.size() == 0 || searchCostBFS == 181439){
             std::cout << "It was not possible find a solution"<< endLine;
-            std::cout << "The search went through "<<solution.cost<< " steps"<< endLine;
+            found = false;
         }
         else{
             std::cout << "\nSearch cost bfs: "<< searchCostBFS << endLine;
@@ -171,14 +182,17 @@ int main(){
         }
     }
     answer = "R";
-    std::cout<<"Would you like to see the solution? (Y/N)"<< endLine;
-    std::cin>> answer;
-    while (answer != "Y" && answer != "N"){
-        clear();
-        std::cout<< "Invalid answer!"<< endLine;
-        // TO-DO: Clear console
+
+    if (found){
         std::cout<<"Would you like to see the solution? (Y/N)"<< endLine;
         std::cin>> answer;
+        while (answer != "Y" && answer != "N"){
+            clear();
+            std::cout<< "Invalid answer!"<< endLine;
+            // TO-DO: Clear console
+            std::cout<<"Would you like to see the solution? (Y/N)"<< endLine;
+            std::cin>> answer;
+        }
     }
 
     if (answer == "Y"){

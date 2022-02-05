@@ -3,7 +3,6 @@
 Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState, int* searchCost){
     std::stack<Node> nodeStack;
     nodeStack.push(root);
-    int depth = 0;
 
     while (!nodeStack.empty()){
         // Get last Node
@@ -20,8 +19,8 @@ Node dfs(Node root, int columns, int rows, std::set<std::string> usedStates, std
                 nodeStack.push(expandedNode);
                 usedStates.insert(expandedNode.state);
             }
-            // All possible states were seen ()
-            if (usedStates.size() > 181440){
+            // All possible states were seen (https://stackoverflow.com/questions/32983617/improve-8-puzzle-using-bfs)
+            if (usedStates.size() >= 181440){
                 // Return a node with the searchCost, but initial state and emptyPath
                 std::vector<std::string> emptyPath;
                 std::vector<int> indices(rows*columns, 0);
