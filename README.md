@@ -1,12 +1,16 @@
-<h1 align="center">Solução de quebra-cabeças através de buscas cegas</h1> 
+<h1 align="center">Solução de quebra-cabeças através de buscas cegas</h1>
 
 <p align="center">
-    <a href="#--introdução">Introdução</a> |
-    <a href="#--sobre">Sobre</a> |
-    <a href="#--proposta">Proposta</a> |
-    <a href="#--execução">Execução</a> |
-    <a href="#--conclusão">Conclusão</a> |
-    <a href="#--licença">Licença</a>
+    <img alt="Puzzle console" width="200" height="200" src="https://github.com/SousaPedroso/Puzzle/blob/master/images/puzzleExample.PNG">
+</p>
+
+<p align="center">
+    <a href="#-introdução">Introdução</a> |
+    <a href="#-sobre-o-projeto">Sobre</a> |
+    <a href="#-proposta">Proposta</a> |
+    <a href="#-execução">Execução</a> |
+    <a href="#-conclusão">Conclusão</a> |
+    <a href="#-licença">Licença</a>
 </p>
 
 ## [](https://github.com/SousaPedroso/Puzzle/tree/master#-introdução)💻 Introdução
@@ -18,7 +22,7 @@
     Apesar disso, as técnicas e abordagens são muito semelhantes, diferenciando (algumas situações) os algoritmos e suas técnicas necessárias. Redes Neurais, por exemplo, poderiam resolver o quebra-cabeças, mas exigem uma enorme quantidade de dados, a ter uma maior velocidade após aprender. Neste projeto, são implementadas a <a href="https://pt.wikipedia.org/wiki/Busca_em_profundidade">busca em profundidade (dfs)</a> e a <a href="https://pt.wikipedia.org/wiki/Busca_em_largura">busca em largura (bfs)</a>, as quais apesar de não exigirem uma enorme quantidade de dados, a longo prazo, podem ser menos eficientes, mas <i>resolvem</i> o problema.
 </p>
 
-## [](https://github.com/SousaPedroso/Puzzle/tree/master#-sobre)🧩 Sobre o projeto
+## [](https://github.com/SousaPedroso/Puzzle/tree/master#-sobre-o-projeto)🧩 Sobre o projeto
 
 <p>
     O trabalho proposto na disciplina de Inteligência Artifical pela professora Dra. <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do;jsessionid=857482D7CE6ADB6A9CAC7690EF92F7D3.buscatextual_4">Cláudia Aparecida Martins</a> consiste em resolver um quebra-cabeças de 8 peças, com um espaço em branco para deslocar as peças, movendo cada peça possível a partir de um estado inicial até o estado desejado (final). Um exemplo disso está na imagem abaixo, com respectivamente o estado inicial e o final.
