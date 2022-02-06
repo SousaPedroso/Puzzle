@@ -39,151 +39,54 @@ std::vector<Node> Node::expandNode(int columns, int rows){
     // std::cout<< this->state[indexBlankPiece*2]<< endLine;
     // New state
     std::string newState;
-    // First/Last row
-    if (indexBlankPiece < columns || indexBlankPiece >= (rows-1)*columns){
 
-        // First column -> right
-        if (indexBlankPiece % columns == 0){
-            newState = changeState(indexBlankPiece, indexBlankPiece+1);
-            Node node = Node(newState, this->cost, this->path, this->indices);
-            // Update the index of the pieces
-            int indexBlankPieceCopy = indices[rows*columns-1];
-            char pieceToChange = this->state[(indexBlankPiece+1)*2];
-            // New position
-            node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-            node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-            expandedNodes.push_back(node);
-
-        }
-        else {
-            // Last column <- left
-            if (indexBlankPiece % columns == columns-1){
-                newState = changeState(indexBlankPiece, indexBlankPiece-1);
-                Node node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                // Save the indexBlankPiece
-                int indexBlankPieceCopy = indices[rows*columns-1];
-                char pieceToChange = this->state[(indexBlankPiece-1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-            }
-            else {
-                // Three moves
-                // right and left
-                newState = changeState(indexBlankPiece, indexBlankPiece+1);
-                Node node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                int indexBlankPieceCopy = indices[rows*columns-1];
-                char pieceToChange = this->state[(indexBlankPiece+1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-
-                newState = changeState(indexBlankPiece, indexBlankPiece-1);
-                node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                indexBlankPieceCopy = indices[rows*columns-1];
-                pieceToChange = this->state[(indexBlankPiece-1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-
-            }
-        }
-        // First row, down
-        if (indexBlankPiece < columns){
-            newState = changeState(indexBlankPiece, indexBlankPiece+columns);
-            Node node = Node(newState, this->cost, this->path, this->indices);
-            // Update the index of the pieces
-            int indexBlankPieceCopy = indices[rows*columns-1];
-            char pieceToChange = this->state[(indexBlankPiece+columns)*2];
-            node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-            node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-            expandedNodes.push_back(node);
-        }
-        // Last row, up
-        else{
-            newState = changeState(indexBlankPiece, indexBlankPiece-columns);
-            Node node = Node(newState, this->cost, this->path, this->indices);
-            // Update the index of the pieces
-            int indexBlankPieceCopy = indices[rows*columns-1];
-            char pieceToChange = this->state[(indexBlankPiece-columns)*2];
-            node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-            node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-            expandedNodes.push_back(node);
-        }
-    }
-    else{
-        // Check three or four possible moves
-        // Down and up always happen
-        newState = changeState(indexBlankPiece, indexBlankPiece+columns);
+    // Move upside
+    if (indexBlankPiece >= columns){
+        newState = changeState(indexBlankPiece, indexBlankPiece-columns);
         Node node = Node(newState, this->cost, this->path, this->indices);
         // Update the index of the pieces
         int indexBlankPieceCopy = indices[rows*columns-1];
-        char pieceToChange = this->state[(indexBlankPiece+columns)*2];
+        char pieceToChange = this->state[(indexBlankPiece-columns)*2];
+        // New position
         node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
         node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
         expandedNodes.push_back(node);
-
-        newState = changeState(indexBlankPiece, indexBlankPiece-columns);
-        node = Node(newState, this->cost, this->path, this->indices);
-        // Update the index of the pieces
-        indexBlankPieceCopy = indices[rows*columns-1];
-        pieceToChange = this->state[(indexBlankPiece-columns)*2];
-        node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-        node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-        expandedNodes.push_back(node);
-
-        // Three moves are on laterals
-
-        // First column, -> right
-        if (indexBlankPiece % columns == 0){
-            newState = changeState(indexBlankPiece, indexBlankPiece+1);
-            Node node = Node(newState, this->cost, this->path, this->indices);
-            // Update the index of the pieces
-            int indexBlankPieceCopy = indices[rows*columns-1];
-            char pieceToChange = this->state[(indexBlankPiece+1)*2];
-            node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-            node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-            expandedNodes.push_back(node);
-
-        }
-        else{
-            // Left
-            if(indexBlankPiece % columns == columns-1){
-                newState = changeState(indexBlankPiece, indexBlankPiece-1);
-                Node node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                int indexBlankPieceCopy = indices[rows*columns-1];
-                char pieceToChange = this->state[(indexBlankPiece-1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-            }
-            else{
-                // Right and left
-                newState = changeState(indexBlankPiece, indexBlankPiece+1);
-                node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                int indexBlankPieceCopy = indices[rows*columns-1];
-                char pieceToChange = this->state[(indexBlankPiece+1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-
-                newState = changeState(indexBlankPiece, indexBlankPiece-1);
-                Node node = Node(newState, this->cost, this->path, this->indices);
-                // Update the index of the pieces
-                indexBlankPieceCopy = indices[rows*columns-1];
-                pieceToChange = this->state[(indexBlankPiece-1)*2];
-                node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
-                node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
-                expandedNodes.push_back(node);
-            }
-        }
     }
-    // TO-DO: Optimize verifications
+    // Move downside
+    if (indexBlankPiece < (rows-1)*columns){
+        newState = changeState(indexBlankPiece, indexBlankPiece+columns);
+        Node node = Node(newState, this->cost, this->path, this->indices);
+       // Update the index of the pieces
+        int indexBlankPieceCopy = indices[rows*columns-1];
+        char pieceToChange = this->state[(indexBlankPiece+columns)*2];
+        // New position
+        node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
+        node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
+        expandedNodes.push_back(node);
+    }
+    // Move rightside
+    if (indexBlankPiece % columns != columns-1){
+        newState = changeState(indexBlankPiece, indexBlankPiece+1);
+        Node node = Node(newState, this->cost, this->path, this->indices);
+        // Update the index of the pieces
+        int indexBlankPieceCopy = indices[rows*columns-1];
+        char pieceToChange = this->state[(indexBlankPiece+1)*2];
+        node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
+        node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
+        expandedNodes.push_back(node);
+    }
+    // Move leftside
+    if (indexBlankPiece % columns != 0){
+        newState = changeState(indexBlankPiece, indexBlankPiece-1);
+        Node node = Node(newState, this->cost, this->path, this->indices);
+        // Update the index of the pieces
+        int indexBlankPieceCopy = indices[rows*columns-1];
+        char pieceToChange = this->state[(indexBlankPiece-1)*2];
+        node.indices[rows*columns-1] = node.indices[(pieceToChange-'0')-1];
+        node.indices[(pieceToChange-'0')-1] = indexBlankPieceCopy;
+        expandedNodes.push_back(node);
+    }
+
     return expandedNodes;
 }
 
@@ -203,7 +106,7 @@ void Node::printState(int columns, int rows){
                 if (j < columns-1){
                     std::cout<< "| "<<this->state[position]<< " |";
                 }
-                // Last row
+                // Last column
                 else{
                     std::cout<< " "<< state[position]<< " |";
                 }
