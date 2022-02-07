@@ -25,7 +25,7 @@
 ## [](https://github.com/SousaPedroso/Puzzle/tree/master#-sobre-o-projeto)🧩 Sobre o projeto
 
 <p>
-    O trabalho proposto na disciplina de Inteligência Artifical pela professora Dra. <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do;jsessionid=857482D7CE6ADB6A9CAC7690EF92F7D3.buscatextual_4">Cláudia Aparecida Martins</a> consiste em resolver um quebra-cabeças de 8 peças, com um espaço em branco para deslocar as peças, movendo cada peça possível a partir de um estado inicial até o estado desejado (final). Um exemplo disso está na imagem abaixo, com respectivamente o estado inicial e o final.
+    O trabalho proposto na disciplina de Inteligência Artifical pela professora Dra. <a href="http://lattes.cnpq.br/0252766947347684">Cláudia Aparecida Martins</a> consiste em resolver um quebra-cabeças de 8 peças, com um espaço em branco para deslocar as peças, movendo cada peça possível a partir de um estado inicial até o estado desejado (final). Um exemplo disso está na imagem abaixo, com respectivamente o estado inicial e o final.
 </p>
 
 <p align="center">
