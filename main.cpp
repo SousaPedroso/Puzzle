@@ -1,6 +1,7 @@
 #include "Node.hpp"
 #include "dfs.hpp"
 #include "bfs.hpp"
+#include <random>
 
 // Thanks to Cat Plus Plus answer: https://stackoverflow.com/questions/6486289/how-can-i-clear-console 
 #if defined _WIN32
@@ -40,7 +41,6 @@ int main(){
 
     int rows, columns, searchCostDFS=0, searchCostBFS=0, searchAlgorithm;
     std::string answer, piece;
-    bool rightRows=false, rightColumns=false;
 
     std::cout<< "Would you like see a example? (Y/N)"<< endLine;
     std::cin>> answer;
@@ -76,12 +76,12 @@ int main(){
     // Target state
     std::string targetState = "";
     // Stores the states of the puzzle to avoid loop more than one time over a state
-    std::set<std::string> puzzleStates;
+    std::set<int> puzzleStates;
     // Stores the paths
     std::vector<std::string> paths;
 
     clear();
-    std::cout << "\nWhat is the initial puzzle?"<< endLine;
+    std::cout << "What is the initial puzzle?"<< endLine;
     std::cout<< "Pieces: ";
     for (int i=0; i<rows; i++){
         for (int j=0;j<columns; j++){
@@ -94,7 +94,18 @@ int main(){
     // TO-Do: Check input
 
     // Indices for each piece
-    std::vector<int> indices(rows*columns, 0);
+    std::array<int, 9> indices;
+
+    // Obtain random seed
+    std::random_device rd;
+    // Engine for obtain the random number based on seed
+    std::mt19937 gen(rd());
+    // prime number to compute hash
+    const long long P = 1e9+7;
+    // Get x from 0 to P-1
+    std::uniform_int_distribution<int> uid(0, P-1);
+    long long x = uid(rd);
+
     // O(rows*columns), fast future change of states
     int position = 0;
     // Ignore ' ' characters
@@ -109,6 +120,7 @@ int main(){
     }
     // Construct the node
     Node inititalState = Node(state, searchCostBFS, paths, indices);
+    inititalState.hash = inititalState.computeHash(P, x, rows, columns);
 
     std::cout << "\nWhat is the target puzzle to be find?"<< endLine;
     std::cout<< "Pieces: ";
@@ -123,7 +135,7 @@ int main(){
         }
     }
     // TO-DO: Check input
-
+    
     clear();
     std::cout<< "What search you would like to do?"<< endLine;
     std::cout<< "--------------------------------"<< endLine;
@@ -156,9 +168,12 @@ int main(){
     bool found=true;
     // First declaration just for global scope
     Node solution = inititalState;
+    // Comparations through hash
+    Node targetNode = Node(targetState, searchCostBFS, paths, indices);
+    long long targetHash = targetNode.computeHash(P, x, rows, columns);
     if (searchAlgorithm == 1){
         std::cout << "Puzzle's solution through DFS"<< endLine;
-        solution = dfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostDFS);
+        solution = dfs(inititalState, columns, rows, puzzleStates, targetHash, &searchCostDFS, P, x);
         if (solution.path.size() == 0){
             std::cout << "It was not possible find a solution"<< endLine;
             found = false;
@@ -170,7 +185,7 @@ int main(){
     }
     else{
         std::cout << "Puzzle's solution through BFS..."<< endLine;
-        solution = bfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
+        solution = bfs(inititalState, columns, rows, puzzleStates, targetHash, &searchCostBFS, P, x);
         if (solution.path.size() == 0 || searchCostBFS == 181439){
             std::cout << "It was not possible find a solution"<< endLine;
             found = false;
