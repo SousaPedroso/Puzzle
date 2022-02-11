@@ -4,4 +4,4 @@
 #include <queue>
 #include <set>
 
-Node bfs(Node root, int columns, int rows, std::set<std::string> usedStates, std::string targetState, int* searchCost);
+Node bfs(Node root, int columns, int rows, std::set<int> usedStates, long long targetHash, int* searchCost, long long p, long long x);
