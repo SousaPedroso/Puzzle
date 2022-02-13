@@ -50,14 +50,6 @@
 - A busca ocorre somente se ao mover uma peça o estado já não ocorreu antes.
 - O estado considera as peças como se o quebra-cabeças fosse _achatado_ (1-dimensão).
 
-<p>
-    Uma outra solução poderia ser utilizar o <a href="https://codeforces.com/blog/entry/60442">hash de cada string, ao invés da string</a> (conceitos mais pesados), a partir de um número primo muito grande, para manter O(1) cada consulta de um estado, mas para cada movimento de peças seria preciso calcular novamente o hash, então optei por armazenar as strings, pois a partir do estado inicial, é preciso trocar somente duas posições para o novo estado, além de que a consulta não é tão problemática (<a href="https://www.cplusplus.com/reference/set/set/find/">log n</a>).
-</p>
-
-<p>
-    Nesse caso, muito mais memória vai ser preciso, mas a complexidade do código fica um pouco menor. Futuramente será implantando o uso de hash 😃. 
-</p>
-
 ## [](https://github.com/SousaPedroso/Puzzle/tree/master#-execução)🛠 Execução
 
 <p>
@@ -71,11 +63,11 @@
 ## [](https://github.com/SousaPedroso/Puzzle/tree/master#-conclusão)🤔 Conclusão
 
 <p>
-    A busca em profundidade demonstrou ser bem mais problemática que a busca em largura, isto devido a ser um algoritmo guloso, buscando cada vez "mais fundo" a solução e precisando voltar um estado ao verificar que ele já foi.
+    A busca em profundidade demonstrou ser bem mais eficiente que a busca em largura, isto pois não precisa armazenar toda a árvore de estados para checar a solução.
 </p>
 
 <p>
-    A busca em largura devido a checar cada possibilidade de movimento, apesar da expansão, consegue "rapidamente" determinar uma solução, por não explorar caminhos que podem não levar a lugar algum.
+    A busca em largura devido a checar cada possibilidade de movimento, consegue determinar a solução com menor custo, mas demora muito mais que a busca em profundidade para isso.
 </p>
 
 ## [](https://github.com/SousaPedroso/Puzzle/tree/master#-licença)📝 Licença
