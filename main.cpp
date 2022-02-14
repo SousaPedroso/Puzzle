@@ -156,7 +156,7 @@ int main(){
     if (searchAlgorithm == 1){
         std::cout << "Puzzle's solution through DFS"<< endLine;
         solution = dfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostDFS);
-        if (solution.path.size() == 0){
+        if (solution.index == -1){
             std::cout << "It was not possible find a solution"<< endLine;
             found = false;
         }
