@@ -167,6 +167,7 @@ int main(){
     }
     else{
         std::cout << "Puzzle's solution through BFS..."<< endLine;
+        inititalState.path.push_back(inititalState.state);
         solution = bfs(inititalState, columns, rows, puzzleStates, targetState, &searchCostBFS);
         if (solution.index == -1){
             std::cout << "It was not possible find a solution"<< endLine;
